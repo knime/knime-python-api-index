@@ -16,11 +16,20 @@ Usage:  python build_since_index.py
 """
 
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 SNAPSHOT_DIR = ROOT / "snapshots"
 OUT = ROOT / "since-index.json"
+
+# The producer<->consumer key spelling, see KEY_FORMAT.md. Kept here as a guard so
+# a snapshot whose keys drifted from that format fails the build instead of
+# silently disabling the downstream compatibility check.
+KEY_FORMAT = re.compile(
+    r"^(knime\.extension|knime\.scripting\.io|knime\.api\.schema|knime\.api\.table)"
+    r"(\.[A-Za-z_][A-Za-z0-9_]*)*(\([A-Za-z_][A-Za-z0-9_]*\))?$"
+)
 
 
 def version_key(version: str) -> tuple[int, ...]:
@@ -31,6 +40,12 @@ def main() -> None:
     snapshots = []
     for path in SNAPSHOT_DIR.glob("*.json"):
         data = json.loads(path.read_text(encoding="utf-8"))
+        bad = [key for key in data["keys"] if not KEY_FORMAT.match(key)]
+        if bad:
+            raise SystemExit(
+                f"{path.name}: {len(bad)} key(s) violate the format in KEY_FORMAT.md, "
+                f"e.g. {bad[:3]}"
+            )
         snapshots.append((data["knime_version"], data["keys"]))
     if not snapshots:
         raise SystemExit(f"No snapshots found in {SNAPSHOT_DIR}")

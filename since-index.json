@@ -3,7 +3,8 @@
  "sampled_versions": [
   "5.9",
   "5.10",
-  "5.11"
+  "5.11",
+  "5.13"
  ],
  "keys": {
   "knime.extension.And": "5.9",

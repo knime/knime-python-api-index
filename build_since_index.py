@@ -40,6 +40,10 @@ def main() -> None:
     snapshots = []
     for path in SNAPSHOT_DIR.glob("*.json"):
         data = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(data, dict) or "knime_version" not in data or "keys" not in data:
+            raise SystemExit(
+                f"{path.name}: snapshot must be an object with 'knime_version' and 'keys'"
+            )
         bad = [key for key in data["keys"] if not KEY_FORMAT.match(key)]
         if bad:
             raise SystemExit(

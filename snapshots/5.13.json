@@ -174,7 +174,6 @@
   "knime.extension.DialogCreationContext.get_credentials(identifier)",
   "knime.extension.DialogCreationContext.get_flow_variables",
   "knime.extension.DialogCreationContext.get_input_specs",
-  "knime.extension.DialogCreationContext.is_local_executor",
   "knime.extension.DoubleParameter",
   "knime.extension.DoubleParameter.__init__",
   "knime.extension.DoubleParameter.__init__(default_value)",

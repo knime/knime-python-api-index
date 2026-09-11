@@ -181,7 +181,6 @@
   "knime.extension.DialogCreationContext.get_credentials(identifier)": "5.9",
   "knime.extension.DialogCreationContext.get_flow_variables": "5.9",
   "knime.extension.DialogCreationContext.get_input_specs": "5.9",
-  "knime.extension.DialogCreationContext.is_local_executor": "5.13",
   "knime.extension.DoubleParameter": "5.9",
   "knime.extension.DoubleParameter.__init__": "5.9",
   "knime.extension.DoubleParameter.__init__(default_value)": "5.9",

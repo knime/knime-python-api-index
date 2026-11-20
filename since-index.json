@@ -5,7 +5,8 @@
   "5.10",
   "5.11",
   "5.12",
-  "5.13"
+  "5.13",
+  "5.14"
  ],
  "keys": {
   "knime.extension.And": "5.9",
@@ -499,6 +500,7 @@
   "knime.extension.PythonNode.execute(exec_context)": "5.9",
   "knime.extension.PythonNode.execute(inputs)": "5.9",
   "knime.extension.PythonNode.input_ports": "5.9",
+  "knime.extension.PythonNode.on_reset": "5.14",
   "knime.extension.PythonNode.output_ports": "5.9",
   "knime.extension.PythonNode.output_view": "5.9",
   "knime.extension.Schema": "5.9",
